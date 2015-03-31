@@ -18,7 +18,7 @@ angular.module('r2bis.charts.detail', [])
 
 		var parseData = JSON.parse(changeStr);
 
-		if (status == 200) {
+		if (status === 200) {
 			$scope.showGraph(parseData);
 			//sale json data
 			$scope.saleList = parseData;

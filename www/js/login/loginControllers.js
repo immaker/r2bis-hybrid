@@ -4,7 +4,7 @@
 'use strict';
 
 angular.module('r2bis.login.controllers', [])
-.controller('LoginCtrl', function($scope, $ionicLoading, $http, $state, $ionicPopup, userInfo) {
+.controller('LoginCtrl', function($scope, $ionicLoading, $http, $state, $ionicPopup, SessionInfo) {
 
 	$scope.doLogin = function() {
 		$ionicLoading.show({
@@ -21,12 +21,10 @@ angular.module('r2bis.login.controllers', [])
 				console.log(data.d + "/// " + status);
 				var parseData = JSON.parse(data.d);
 				if (parseData.success) {
-					//userInfo.pushUser({
-					//	"userId": parseData.AUTH_ID,
-					//	"userName": parseData.AUTH_NAME,
-					//	"userTopGroupId": parseData.AUTH_TOPGRP_ID,
-					//	"userRoleGrade": parseData.AUTH_ROLE_GRADE
-					//});
+
+					SessionInfo.reset();
+					SessionInfo.setUserInfo(parseData);
+
 					$state.go('tab');
 					$ionicLoading.hide();
 

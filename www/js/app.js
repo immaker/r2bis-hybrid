@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('r2bis', ['ionic', 'angular-datepicker', 'r2bis.login', 'r2bis.calendar', 'r2bis.charts', 'r2bis.records', 'r2bis.works', 'r2bis.account'])
+angular.module('r2bis', ['ionic', 'angular-datepicker', 'r2bis.common', 'r2bis.login', 'r2bis.calendar', 'r2bis.charts', 'r2bis.records', 'r2bis.works', 'r2bis.account', 'r2bis.login.services'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

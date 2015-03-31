@@ -4,17 +4,50 @@
 'use strict';
 
 angular.module('r2bis.login.services', [])
-.factory('userInfo', [
-	function() {
-	var user = [];
+.service('SessionInfo', ['$rootScope', function SessionInfo($rootScope) {
+	this.localStorageKey = "__SESSION_INFO";
+	try {
+		$rootScope.currentUser = JSON.parse(localStorage.getItem(this.localStorageKey) || "{}");
+	} catch(e) {
+		$rootScope.currentUser = {};
+	}
 
-		return {
-			getUser: function() {
-				return user;
-			},
-			pushUser: function(info) {
+	this.getCurrentUser = function() {
+		return $rootScope.currentUser;
+	}
 
-				user.push(info)
-			}
-		};
+	this.isUserSignedIn = function() {
+		if(this.getCurrentUser() && this.getCurrentUser().id) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+
+	this.setUserInfo = function(info) {
+		angular.extend($rootScope.currentUser, info);
+		localStorage.setItem(this.localStorageKey, JSON.stringify($rootScope.currentUser));
+	};
+
+	this.reset = function() {
+		$rootScope.currentUser = {};
+		localStorage.setItem(this.localStorageKey, JSON.stringify($rootScope.currentUser));
+	};
+
 }]);
+
+
+//.factory('userInfo', [
+//	function() {
+//	var user = [];
+//
+//		return {
+//			getUser: function() {
+//				return user;
+//			},
+//			pushUser: function(info) {
+//
+//				user.push(info)
+//			}
+//		};
+//}]);

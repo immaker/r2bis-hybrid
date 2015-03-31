@@ -2,7 +2,7 @@
  * Created by taejun on 2015-03-31.
  */
 angular.module('r2bis.works.controllers', [])
-.controller('WorksCtrl', function($scope) {
+.controller('WorksCtrl', function($scope, $state, SessionInfo, searchParam) {
 	var date = new Date();
 
 	$scope.addZero = function(num) {
@@ -34,8 +34,10 @@ angular.module('r2bis.works.controllers', [])
 	};
 
 	$scope.searchWorks = function() {
+		var userInfo = SessionInfo.getCurrentUser();
+
 		var param = {
-			"uid": '40526',
+			"uid": userInfo.AUTH_ID,
 			"fromYmd": $scope.fromDate,
 			"toYmd": $scope.toDate
 		};

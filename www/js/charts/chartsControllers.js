@@ -4,7 +4,7 @@
 'use strict';
 
 angular.module('r2bis.charts.controllers', [])
-.controller('ChartsCtrl', function($scope, $ionicLoading, $http, $state, $document, searchParam) {
+.controller('ChartsCtrl', function($scope, $state, searchParam, SessionInfo) {
 
 		var date = new Date();
 
@@ -17,11 +17,6 @@ angular.module('r2bis.charts.controllers', [])
 
 		$scope.fromOptions = {
 			format: 'yyyy-mm-dd',
-			today: '',
-			clear: 'Clear selection',
-			close: 'Cancel',
-			buttonClear: 'picker__button--clear',
-			buttonClose: 'picker__button--close',
 			hiddenName: true,
 			onSet: function( event ) {
 				$scope.fromDate = this.get('select', 'yyyy-mm-dd');
@@ -37,8 +32,10 @@ angular.module('r2bis.charts.controllers', [])
 		};
 
 		$scope.searchChart = function(){
+
+			var userInfo = SessionInfo.getCurrentUser();
 			var param = {
-				"uid": 'admin',
+				"uid": userInfo.AUTH_ID,
 				"fromYmd": $scope.fromDate,
 				"toYmd": $scope.toDate
 			};

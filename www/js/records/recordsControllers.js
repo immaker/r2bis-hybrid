@@ -4,7 +4,7 @@
 'use strict';
 
 angular.module('r2bis.records.controllers', [])
-	.controller('RecordsCtrl', function($scope, $ionicLoading, $http, $state, $ionicPopup, searchParam) {
+	.controller('RecordsCtrl', function($scope, $state, searchParam, SessionInfo) {
 		var date = new Date();
 
 		$scope.addZero = function(num) {
@@ -36,8 +36,11 @@ angular.module('r2bis.records.controllers', [])
 		};
 
 		$scope.searchRecords = function() {
+
+			var userInfo = SessionInfo.getCurrentUser();
+
 			var param = {
-				"uid": '40526',
+				"uid": userInfo.AUTH_ID,
 				"fromYmd": $scope.fromDate,
 				"toYmd": $scope.toDate
 			};

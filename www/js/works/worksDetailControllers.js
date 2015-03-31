@@ -15,7 +15,7 @@ angular.module('r2bis.works.detail', [])
 
 				var parseData = JSON.parse(changeStr);
 
-				if (status == 200) {
+				if (status === 200) {
 					//sale json data
 					$scope.recordList = parseData;
 
