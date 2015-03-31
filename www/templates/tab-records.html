@@ -1,0 +1,34 @@
+<ion-view view-title="Records">
+    <!--<ion-list>-->
+      <!--<ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="chat in chats" type="item-text-wrap" href="#/tab/chats/{{chat.id}}">-->
+        <!--<img ng-src="{{chat.face}}">-->
+        <!--<h2>{{chat.name}}</h2>-->
+        <!--<p>{{chat.lastText}}</p>-->
+        <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
+
+        <!--<ion-option-button class="button-assertive" ng-click="remove(chat)">-->
+          <!--Delete-->
+        <!--</ion-option-button>-->
+      <!--</ion-item>-->
+    <!--</ion-list>-->
+  <ion-content class="padding">
+    <div>
+      <label class="item-stacked-label">
+        <span class="date-picker-input-label">시작 날짜</span>
+        <input type="text" class="date-picker-input" pick-a-date="date" pick-a-date-options="fromOptions"  ng-model="fromDate"/>
+      </label>
+
+      <hr>
+      <label class="item-stacked-label">
+        <span class="date-picker-input-label">종료 날짜</span>
+        <input type="text" class="date-picker-input" pick-a-date="date" pick-a-date-options="toOptions" ng-model="toDate"/>
+      </label>
+      <hr>
+      <button class="button button-royal search-button" ng-click="searchRecords()">
+        조회하기
+      </button>
+      <hr>
+    </div>
+  </ion-content>
+
+</ion-view>

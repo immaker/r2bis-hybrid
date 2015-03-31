@@ -1,0 +1,87 @@
+/* Empty. Add your own CSS if you like */
+
+.login-title {
+    color: #ef473a;
+    font-weight: bold;
+}
+.login {
+    background-color: #ffffff;
+    border-bottom-width: 0;
+}
+.login-form {
+    margin: 30% 10% 20% 10%;
+}
+.login-label input {
+    background-color: #ffffff;
+    border-color: #8f8f8f;
+    border-bottom-style: solid;
+    border-bottom-width: thin;
+    width: 100%;
+    margin: 5% 0%
+}
+.login-button-radius {
+    border-radius: 18px;
+    width: 100%;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+.txt-siteinfo {
+    padding: 8px 0 5px 0;
+    background-color: #3f3f3f;
+    line-height: 1.4;
+    text-align: center;
+    font-size: 0.923em;
+    font-weight: bold;
+    color: #8f8f8f;
+    margin-bottom: 0;
+}
+.chk-txt {
+    vertical-align: top;
+    font-size: 18px;
+    color: #8f8f8f;
+    margin-left: 10px;
+}
+.chk-inline {display: inline-block; !important;}
+.margin-0 {margin:0;}
+.margin-top-30 {margin-top: 30%}
+
+
+.date-picker-input[type="text"] {
+    background: url(../img/selectday01.png) no-repeat right bottom;
+    padding-top: 3px;
+    padding-left: 10px;
+    margin: 5px 0;
+    height: 64px;
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 4;
+    vertical-align: bottom;
+}
+.date-picker-input-label {
+    display: table;
+    padding: 10px;
+    max-width: 200px;
+    width: 35%;
+    color: #444;
+    font-size: 16px;
+    position: absolute;
+}
+/*todo*/
+.date-picker-img {
+
+}
+
+
+
+.search-button {
+    margin: 5px 0;
+    height: 64px;
+    width: 100%;
+    font-size: 18px;
+    font-weight: bold;
+}
