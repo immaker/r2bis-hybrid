@@ -109,6 +109,15 @@ angular.module('r2bis', ['ionic', 'angular-datepicker', 'r2bis.common', 'r2bis.l
 			  }
 		  }
 	  })
+  .state('tab.works-detail', {
+	  url: '/works/workDetail',
+	  views: {
+		  'tab-works': {
+			  templateUrl: 'templates/works-detail.html',
+			  controller: 'WorksDetailCtrl'
+		  }
+	  }
+  })
 
   .state('tab.account', {
     url: '/account',
@@ -121,6 +130,6 @@ angular.module('r2bis', ['ionic', 'angular-datepicker', 'r2bis.common', 'r2bis.l
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/calendar');
+  $urlRouterProvider.otherwise('/login');
 
 });

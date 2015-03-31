@@ -76,12 +76,26 @@
 
 }
 
-
-
 .search-button {
     margin: 5px 0;
     height: 64px;
     width: 100%;
     font-size: 18px;
     font-weight: bold;
+}
+
+.card-work-reject {
+    border-top: solid;
+    border-color: #ef473a;
+    border-top-width: thick;
+}
+.card-work-wait {
+    border-top: solid;
+    border-color:  #ffc900;
+    border-top-width: thick;
+}
+.card-work-approval {
+    border-top: solid;
+    border-color: #886aea;
+    border-top-width: thick;
 }

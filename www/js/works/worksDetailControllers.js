@@ -2,7 +2,9 @@
  * Created by taejun on 2015-03-31.
  */
 angular.module('r2bis.works.detail', [])
-.controller('WorksDetailCtrl', function($scope, $ionicLoading, $http) {
+.controller('WorksDetailCtrl', function($scope, $ionicLoading, $http, searchParam) {
+
+		var param = searchParam.getParam();
 
 		$ionicLoading.show({
 			template: 'Loading...'
@@ -10,14 +12,18 @@ angular.module('r2bis.works.detail', [])
 
 		$http.post("http://scms.ktcs.co.kr/Mobile/Rs2_WebService.asmx/WfmChangeList", JSON.stringify(param))
 			.success(function(data, status) {
-				var re = /일자/gi;
-				var changeStr =	data.d.replace(re,'day');
+
+				var changeStr =	data.d.replace(/상태/gi,'status')
+					.replace(/변경일/gi,'changeDay')
+					.replace(/변경전/gi,'changeBefore')
+					.replace(/변경후/gi,'changeAfter')
+					.replace(/신청일시/gi,'requestDay');
 
 				var parseData = JSON.parse(changeStr);
 
 				if (status === 200) {
 					//sale json data
-					$scope.recordList = parseData;
+					$scope.workList = parseData;
 
 					$ionicLoading.hide()
 				} else {

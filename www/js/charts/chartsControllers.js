@@ -4,7 +4,7 @@
 'use strict';
 
 angular.module('r2bis.charts.controllers', [])
-.controller('ChartsCtrl', function($scope, $state, searchParam, SessionInfo) {
+.controller('ChartsCtrl', function($scope, $state, searchParam, SessionInfo, calendarInit) {
 
 		var date = new Date();
 

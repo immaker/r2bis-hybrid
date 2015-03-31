@@ -1,0 +1,28 @@
+<ion-view view-title="works detail">
+  <ion-content class="padding">
+    <div class="card card-work-approval" ng-repeat="work in workList">
+      <div class="item item-text-wrap">
+        <span>{{work.status}}</span>
+        <span>{{work.requestDay}}</span>
+        <span>기존: {{work.changeBefore}} / 변경: {{work.changeAfter}}</span>
+        <span>{{work.changeDay}}</span>
+      </div>
+    </div>
+    <div class="card card-work-wait" ng-repeat="work in workList">
+      <div class="item item-text-wrap">
+        <span>{{work.status}}</span>
+        <span style="display: block; font-size: 0.9em; padding: 5px 0;">{{work.changeDay}}</span>
+        <span style="display: block; font-size: 1.3em; font-weight: bold; color: #ffc900;">기존: {{work.changeBefore}} / 변경: {{work.changeAfter}}</span>
+        <span style="display: block; font-size: 0.8em; color: RGBA(0,0,0,0.5)">{{work.requestDay}}</span>
+      </div>
+    </div>
+    <div class="card card-work-reject" ng-repeat="work in workList">
+      <div class="item item-text-wrap">
+        <span>{{work.status}}</span>
+        <span>{{work.requestDay}}</span>
+        <span>기존: {{work.changeBefore}} / 변경: {{work.changeAfter}}</span>
+        <span>{{work.changeDay}}</span>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

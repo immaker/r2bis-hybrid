@@ -14,11 +14,6 @@ angular.module('r2bis.works.controllers', [])
 
 	$scope.fromOptions = {
 		format: 'yyyy-mm-dd',
-		today: '',
-		clear: 'Clear selection',
-		close: 'Cancel',
-		buttonClear: 'picker__button--clear',
-		buttonClose: 'picker__button--close',
 		hiddenName: true,
 		onSet: function( event ) {
 			$scope.fromDate = this.get('select', 'yyyy-mm-dd');

@@ -4,7 +4,7 @@
 angular.module('r2bis.charts.detail', [])
 .controller('ChartsDetailCtrl', function($scope, $http, $ionicLoading, searchParam) {
 
-	// 검색 조건 // chartsService 통해서 컨트롤러 사이 통신
+	// 검색 조건 // factory 통해서 컨트롤러 사이 통신
 	var param = searchParam.getParam();
 
 	$ionicLoading.show({
