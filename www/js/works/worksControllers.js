@@ -8,8 +8,20 @@ angular.module('r2bis.works.controllers', [])
 	$scope.fromDate = calendarInit.getPrtDate01();
 	$scope.toDate = calendarInit.getPrtDate();
 
-	$scope.fromOptions = calendarInit.getOptions();
-	$scope.toOptions = calendarInit.getOptions();
+	$scope.fromOptions = {
+		format: 'yyyy-mm-dd',
+		hiddenName: true,
+		onSet: function() {
+			$scope.fromDate = this.get('select', 'yyyy-mm-dd');
+		}
+	};
+	$scope.toOptions = {
+		format: 'yyyy-mm-dd',
+		hiddenName: true,
+		onSet: function() {
+			$scope.toDate = this.get('select', 'yyyy-mm-dd');
+		}
+	};
 
 	$scope.searchWorks = function() {
 		var userInfo = SessionInfo.getCurrentUser();

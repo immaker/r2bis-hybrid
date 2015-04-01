@@ -2,6 +2,7 @@
  * Created by taejun on 2015-03-31.
  */
 angular.module('r2bis.common', [])
+	// controller param 전달
 .factory('searchParam', [
 	function() {
 		var self = this;
@@ -19,7 +20,7 @@ angular.module('r2bis.common', [])
 
 	}
 ])
-//todo 달력설정값
+	//달력 초기 설정
 .factory('calendarInit', [
 	function() {
 		var self = this;
@@ -27,14 +28,15 @@ angular.module('r2bis.common', [])
 
 		this.options = {
 			format: 'yyyy-mm-dd',
-			hiddenName: true,
-			onSet: function( event ) {
-				return this.get('select', 'yyyy-mm-dd');
-			}
+			hiddenName: true
 		};
 
 		return {
-			getOptions: function() {
+			getOptions: function(el) {
+				self.options["onSet"] = function(el) {
+					console.log(el);
+					el = this.get('select', 'yyyy-mm-dd');
+				};
 				return self.options;
 			},
 			getPrtDate: function() {
@@ -69,6 +71,11 @@ angular.module('r2bis.common', [])
 				prtString += "-01";
 
 				return prtString;
+			},
+			dateDiff: function() {
+				var t2 = d2.getTime();
+				var t1 = d1.getTime();
+				return parseInt((t2-t1)/(24*3600*1000));
 			}
 		}
 	}

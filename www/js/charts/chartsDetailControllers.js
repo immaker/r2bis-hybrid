@@ -4,7 +4,6 @@
 angular.module('r2bis.charts.detail', [])
 .controller('ChartsDetailCtrl', function($scope, $http, $ionicLoading, searchParam) {
 
-	// 검색 조건 // factory 통해서 컨트롤러 사이 통신
 	var param = searchParam.getParam();
 
 	$ionicLoading.show({
@@ -13,17 +12,21 @@ angular.module('r2bis.charts.detail', [])
 
 	$http.post("http://scms.ktcs.co.kr/Mobile/Rs2_WebService.asmx/SalesTopGroup", JSON.stringify(param))
 	.success(function(data, status) {
-		var re = /상위그룹/gi;
-		var changeStr =	data.d.replace(re,'target');
+
+		var changeStr =	data.d.replace(/상위그룹/gi,'target');
 
 		var parseData = JSON.parse(changeStr);
 
 		if (status === 200) {
-			$scope.showGraph(parseData);
-			//sale json data
-			$scope.saleList = parseData;
+			if (!parseData.length)  {
+				$scope.saleList = [{'target': '데이터가 없습니다.'}];
+			} else {
+				$scope.showGraph(parseData);
+				//sale json data
+				$scope.saleList = parseData;
+			}
 
-			$ionicLoading.hide()
+			$ionicLoading.hide();
 		} else {
 			$scope.showAlert(parseData.message);
 			$ionicLoading.hide();
@@ -35,15 +38,15 @@ angular.module('r2bis.charts.detail', [])
 	});
 
 	$scope.showGraph = function(parseData) {
+
+		if (!parseData.length) return false;
+
 		var names = [];
 		var values = [];
 		var maxVal = 0;
 
 		for (var i= 1, len = parseData.length; i<len; i++)
 		{
-			//if ($("#searchType").val() == "grp")names.push(parseData[i].상위그룹);
-			//else if ($("#searchType").val() == "man") names.push(parseData[i].매니저명);
-			//else if ($("#searchType").val() == "sub") names.push(parseData[i].소속명);
 			names.push(parseData[i].target);
 			values.push(parseData[i].KT);
 

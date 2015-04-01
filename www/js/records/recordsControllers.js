@@ -6,12 +6,24 @@
 angular.module('r2bis.records.controllers', [])
 	.controller('RecordsCtrl', function($scope, $state, searchParam, SessionInfo, calendarInit) {
 
-		// datepicker 초기 설정
-		$scope.fromDate = calendarInit.getPrtDate01();
-		$scope.toDate = calendarInit.getPrtDate();
+	// datepicker 초기 설정
+	$scope.fromDate = calendarInit.getPrtDate01();
+	$scope.toDate = calendarInit.getPrtDate();
 
-		$scope.fromOptions = calendarInit.getOptions();
-		$scope.toOptions = calendarInit.getOptions();
+	$scope.fromOptions = {
+		format: 'yyyy-mm-dd',
+		hiddenName: true,
+		onSet: function() {
+			$scope.fromDate = this.get('select', 'yyyy-mm-dd');
+		}
+	};
+	$scope.toOptions = {
+		format: 'yyyy-mm-dd',
+		hiddenName: true,
+		onSet: function() {
+			$scope.toDate = this.get('select', 'yyyy-mm-dd');
+		}
+	};
 
 		$scope.searchRecords = function() {
 
