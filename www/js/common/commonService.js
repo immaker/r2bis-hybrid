@@ -23,18 +23,52 @@ angular.module('r2bis.common', [])
 .factory('calendarInit', [
 	function() {
 		var self = this;
+		var d = new Date();
 
 		this.options = {
 			format: 'yyyy-mm-dd',
 			hiddenName: true,
 			onSet: function( event ) {
-				$scope.fromDate = this.get('select', 'yyyy-mm-dd');
+				return this.get('select', 'yyyy-mm-dd');
 			}
 		};
 
 		return {
 			getOptions: function() {
 				return self.options;
+			},
+			getPrtDate: function() {
+
+				var prtString = d.getFullYear() + "-";
+				var month = d.getMonth() + 1;
+				var day = d.getDate();
+
+				if (month < 10)
+					prtString += "0" + month;
+				else
+					prtString += month;
+
+				prtString += "-";
+
+				if (day < 10)
+					prtString += "0" + day;
+				else
+					prtString += day;
+
+				return prtString;
+			},
+			getPrtDate01: function() {
+				var prtString = d.getFullYear() + "-";
+				var month = d.getMonth() + 1;
+
+				if (month < 10)
+					prtString += "0" + month;
+				else
+					prtString += month;
+
+				prtString += "-01";
+
+				return prtString;
 			}
 		}
 	}
