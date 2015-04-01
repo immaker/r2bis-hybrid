@@ -7,6 +7,7 @@ angular.module('r2bis.login.controllers', [])
 .controller('LoginCtrl', function($scope, $ionicLoading, $http, $state, $ionicPopup, SessionInfo) {
 
 	$scope.doLogin = function() {
+
 		$ionicLoading.show({
 			template: 'Loading...'
 		});
@@ -50,7 +51,7 @@ angular.module('r2bis.login.controllers', [])
 				]
 			});
 			alertPopup.then(function(res) {
-				console.log('Thank you for not eating my delicious ice cream cone');
+				console.log(res);
 			});
 		};
 	};

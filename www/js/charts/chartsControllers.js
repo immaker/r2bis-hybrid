@@ -10,6 +10,13 @@ angular.module('r2bis.charts.controllers', [])
 		$scope.fromDate = calendarInit.getPrtDate01();
 		$scope.toDate = calendarInit.getPrtDate();
 
+		//document.getElementById('test_root').addEventListener('click', function() {
+		//		console.log("test_root");
+		//		$scope.toDate.close();
+		//		$scope.fromDate.close();
+		//	}
+		//);
+		//picker__holder
 		$scope.fromOptions = {
 			format: 'yyyy-mm-dd',
 			hiddenName: true,
