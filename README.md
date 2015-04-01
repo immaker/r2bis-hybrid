@@ -47,4 +47,14 @@ node 가 설치되어 있어야 합니다.
     
 ### IONIC 프레임워크 공식 사이트
 
-ionic framework site : [http://ionicframework.com](http://ionicframework.com/) 
+ionic framework site : [http://ionicframework.com](http://ionicframework.com/)
+
+### 캡쳐 이미지
+
+![](http://scms.ktcs.co.kr/mobile/content/screenshot/Screenshot_3.png "width:50px;height:100px")
+![](http://scms.ktcs.co.kr/mobile/content/screenshot/Screenshot_2.png "width:50px;height:100px")
+![](http://scms.ktcs.co.kr/mobile/content/screenshot/Screenshot_1.png "width:50px;height:100px")
+![](http://scms.ktcs.co.kr/mobile/content/screenshot/Screenshot_4.png "width:50px;height:100px")
+![](http://scms.ktcs.co.kr/mobile/content/screenshot/Screenshot_5.png "width:50px;height:100px")
+![](http://scms.ktcs.co.kr/mobile/content/screenshot/Screenshot_6.png "width:50px;height:100px")
+![](http://scms.ktcs.co.kr/mobile/content/screenshot/Screenshot_7.png "width:50px;height:100px")
