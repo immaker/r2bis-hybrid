@@ -51,10 +51,10 @@ ionic framework site : [http://ionicframework.com](http://ionicframework.com/)
 
 ### 캡쳐 이미지
 
-![](http://scms.ktcs.co.kr/mobile/content/screenshot/Screenshot_3.png "width:50px;height:100px")
-![](http://scms.ktcs.co.kr/mobile/content/screenshot/Screenshot_2.png "width:50px;height:100px")
-![](http://scms.ktcs.co.kr/mobile/content/screenshot/Screenshot_1.png "width:50px;height:100px")
-![](http://scms.ktcs.co.kr/mobile/content/screenshot/Screenshot_4.png "width:50px;height:100px")
-![](http://scms.ktcs.co.kr/mobile/content/screenshot/Screenshot_5.png "width:50px;height:100px")
-![](http://scms.ktcs.co.kr/mobile/content/screenshot/Screenshot_6.png "width:50px;height:100px")
-![](http://scms.ktcs.co.kr/mobile/content/screenshot/Screenshot_7.png "width:50px;height:100px")
+![](http://scms.ktcs.co.kr/mobile/content/screenshot/Screenshot_3.png "left" "width:250px;height:400px;")
+![](http://scms.ktcs.co.kr/mobile/content/screenshot/Screenshot_2.png "left" "width:250px;height:400px;")
+![](http://scms.ktcs.co.kr/mobile/content/screenshot/Screenshot_1.png "left" "width:250px;height:400px;")
+![](http://scms.ktcs.co.kr/mobile/content/screenshot/Screenshot_4.png "left" "width:250px;height:400px;")
+![](http://scms.ktcs.co.kr/mobile/content/screenshot/Screenshot_5.png "left" "width:250px;height:400px;")
+![](http://scms.ktcs.co.kr/mobile/content/screenshot/Screenshot_6.png "left" "width:250px;height:400px;")
+![](http://scms.ktcs.co.kr/mobile/content/screenshot/Screenshot_7.png "left" "width:250px;height:400px;")
