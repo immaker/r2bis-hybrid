@@ -30,10 +30,6 @@ node 가 설치되어 있어야 합니다.
 
     cd r2bis-hybrid
 
-### 브라우저로 실행
-
-    ionic serve
-
 ### 플랫폼 추가
 	
     ionic platform add ios 

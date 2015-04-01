@@ -1,6 +1,8 @@
 /**
  * Created by taejun on 2015-03-31.
  */
+'use strict';
+
 angular.module('r2bis.records.detail', [])
 .controller('RecordsDetailCtrl', function($scope, $ionicLoading, $http, searchParam) {
 	// 검색 조건 // chartsService 통해서 컨트롤러 사이 통신

@@ -35,19 +35,3 @@ angular.module('r2bis.login.services', [])
 	};
 
 }]);
-
-
-//.factory('userInfo', [
-//	function() {
-//	var user = [];
-//
-//		return {
-//			getUser: function() {
-//				return user;
-//			},
-//			pushUser: function(info) {
-//
-//				user.push(info)
-//			}
-//		};
-//}]);

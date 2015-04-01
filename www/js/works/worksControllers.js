@@ -1,6 +1,8 @@
 /**
  * Created by taejun on 2015-03-31.
  */
+'use strict';
+
 angular.module('r2bis.works.controllers', [])
 .controller('WorksCtrl', function($scope, $state, SessionInfo, searchParam, calendarInit) {
 

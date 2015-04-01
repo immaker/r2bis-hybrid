@@ -1,6 +1,8 @@
 /**
  * Created by taejun on 2015-03-31.
  */
+'use strict';
+
 angular.module('r2bis.common', [])
 	// controller param 전달
 .factory('searchParam', [

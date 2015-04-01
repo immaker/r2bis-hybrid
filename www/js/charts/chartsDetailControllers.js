@@ -1,6 +1,8 @@
 /**
  * Created by taejun on 2015-03-31.
  */
+'use strict';
+
 angular.module('r2bis.charts.detail', [])
 .controller('ChartsDetailCtrl', function($scope, $http, $ionicLoading, searchParam) {
 
