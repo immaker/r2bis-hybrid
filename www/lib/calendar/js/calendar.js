@@ -58,7 +58,9 @@
 		var self = this;
 
 		this.events.forEach(function(ev) {
-			ev.date = self.current.clone().date(Math.random() * (29 - 1) + 1);
+			ev.date = self.current.clone().date(ev.date);
+			//console.log(ev.date);
+			//console.log(Math.random() * (29 - 1) + 1);
 		});
 
 

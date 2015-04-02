@@ -7,8 +7,9 @@ angular.module('r2bis.charts.controllers', [])
 .controller('ChartsCtrl', function($scope, $state, searchParam, SessionInfo, calendarInit) {
 
 		// datepicker 초기 설정
-		$scope.fromDate = calendarInit.getPrtDate01();
-		$scope.toDate = calendarInit.getPrtDate();
+		var date = new Date();
+		$scope.fromDate = calendarInit.getPrtDate01(date);
+		$scope.toDate = calendarInit.getPrtDate(date);
 
 		//document.getElementById('test_root').addEventListener('click', function() {
 		//		console.log("test_root");

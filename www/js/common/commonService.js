@@ -26,7 +26,6 @@ angular.module('r2bis.common', [])
 .factory('calendarInit', [
 	function() {
 		var self = this;
-		var d = new Date();
 
 		this.options = {
 			format: 'yyyy-mm-dd',
@@ -34,6 +33,7 @@ angular.module('r2bis.common', [])
 		};
 
 		return {
+			// todo picker 달력 설정값
 			getOptions: function(el) {
 				self.options["onSet"] = function(el) {
 					console.log(el);
@@ -41,7 +41,10 @@ angular.module('r2bis.common', [])
 				};
 				return self.options;
 			},
-			getPrtDate: function() {
+			/*
+			 * 날짜를 yyyy-MM-dd 형식으로 출력
+			 */
+			getPrtDate: function(d) {
 
 				var prtString = d.getFullYear() + "-";
 				var month = d.getMonth() + 1;
@@ -61,7 +64,10 @@ angular.module('r2bis.common', [])
 
 				return prtString;
 			},
-			getPrtDate01: function() {
+			/*
+			 * 날짜를 yyyy-MM-01 형식으로 출력
+			 */
+			getPrtDate01: function(d) {
 				var prtString = d.getFullYear() + "-";
 				var month = d.getMonth() + 1;
 
@@ -74,7 +80,21 @@ angular.module('r2bis.common', [])
 
 				return prtString;
 			},
-			dateDiff: function() {
+		/*
+		 * 날짜를 yyyy-MM 형식으로 출력
+		 */
+			getPrtMonth: function(d) {
+				var prtString = d.getFullYear() + "-";
+				var month = d.getMonth() + 1;
+
+				if (month < 10)
+					prtString += "0" + month;
+				else
+					prtString += month;
+
+				return prtString;
+			},
+			dateDiff: function(d1, d2) {
 				var t2 = d2.getTime();
 				var t1 = d1.getTime();
 				return parseInt((t2-t1)/(24*3600*1000));

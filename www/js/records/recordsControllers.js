@@ -7,8 +7,9 @@ angular.module('r2bis.records.controllers', [])
 	.controller('RecordsCtrl', function($scope, $state, searchParam, SessionInfo, calendarInit) {
 
 	// datepicker 초기 설정
-	$scope.fromDate = calendarInit.getPrtDate01();
-	$scope.toDate = calendarInit.getPrtDate();
+	var date = new Date();
+	$scope.fromDate = calendarInit.getPrtDate01(date);
+	$scope.toDate = calendarInit.getPrtDate(date);
 
 	$scope.fromOptions = {
 		format: 'yyyy-mm-dd',

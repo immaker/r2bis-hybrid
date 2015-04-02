@@ -5,31 +5,38 @@
 
 angular.module('r2bis.calendar.controllers', [])
 
-.controller('CalendarCtrl', function($scope, $http, $ionicLoading, SessionInfo) {
+.controller('CalendarCtrl', function($scope, $http, $ionicLoading, SessionInfo, calendarInit) {
 
-	this.addZero = function(num) {
-		if (num < 10) return "0" + num;
-	};
 	var date = new Date();
-	date = date.getFullYear() + "-" + (this.addZero(date.getMonth()+1));
+	// 이번 달 세팅
+	date = calendarInit.getPrtMonth(date);
 	this.userInfo = SessionInfo.getCurrentUser();
 
 	var param = {
 		"month": date,
 		"uid": this.userInfo.AUTH_ID
 	};
-		console.log(param);
+	var calendar;
+	var calData = [];
+	$ionicLoading.show();
 
+	// 월간복무표
 	$http.post("http://scms.ktcs.co.kr/Mobile/Rs2_WebService.asmx/Schedule", JSON.stringify(param))
 		.success(function(data, status) {
-			//this.re = /상위그룹/gi;
-			//this.changeStr =	data.d.replace(this.re,'target');
-			//
+
 			var parseData = JSON.parse(data.d);
 
 			if (status === 200) {
-				//sale json data
-				$scope.wfmMonth = parseData.WFM_MONTH;
+				//서버 데이터가 {1:'출근'}  >>> 키와 키값을 달력에 표시하기 위해 분류하여 날짜별로 새로운 객체 생성
+				angular.forEach(parseData.WFM_MONTH[0], function(value, key) {
+					if (value === "출근")
+						this.push({date : key, eventName: value, calendar: '출근', color: 'blue'});
+					else
+						this.push({date : key, eventName: value, calendar: value, color: 'orange'});
+				}, calData);
+
+				// 달력 생성
+				calendar = new Calendar('#calendar', calData);
 
 				$ionicLoading.hide()
 			} else {
@@ -41,30 +48,4 @@ angular.module('r2bis.calendar.controllers', [])
 			console.log("Error " + data + " " + status);
 			$ionicLoading.hide();
 		});
-
-		var data = [
-			{ eventName: 'Lunch Meeting w/ Mark', calendar: 'Work', color: 'orange', date:'1' }
-			//{ eventName: 'Interview - Jr. Web Developer', calendar: 'Work', color: 'orange', date:'02' },
-			//{ eventName: 'Demo New App to the Board', calendar: 'Work', color: 'orange', date:'3' },
-			//{ eventName: 'Dinner w/ Marketing', calendar: 'Work', color: 'orange', date:'4' }
-
-			//{ eventName: 'Game vs Portalnd', calendar: 'Sports', color: 'blue' },
-			//{ eventName: 'Game vs Houston', calendar: 'Sports', color: 'blue' },
-			//{ eventName: 'Game vs Denver', calendar: 'Sports', color: 'blue' },
-			//{ eventName: 'Game vs San Degio', calendar: 'Sports', color: 'blue' },
-			//
-			//{ eventName: 'School Play', calendar: 'Kids', color: 'yellow' },
-			//{ eventName: 'Parent/Teacher Conference', calendar: 'Kids', color: 'yellow' },
-			//{ eventName: 'Pick up from Soccer Practice', calendar: 'Kids', color: 'yellow' },
-			//{ eventName: 'Ice Cream Night', calendar: 'Kids', color: 'yellow' },
-			//
-			//{ eventName: 'Free Tamale Night', calendar: 'Other', color: 'green' },
-			//{ eventName: 'Bowling Team', calendar: 'Other', color: 'green' },
-			//{ eventName: 'Teach Kids to Code', calendar: 'Other', color: 'green' },
-			//{ eventName: 'Startup Weekend', calendar: 'Other', color: 'green' }
-		];
-		var calendar = new Calendar('#calendar', data);
-
-		var tag =	document.getElementsByTagName('h1')[0].innerHTML;
-		console.log(tag);
 });
