@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('r2bis.account.controllers', [])
+angular.module('r2bis.account', [])
 .controller('AccountCtrl', function($scope) {
 
-	});
+});

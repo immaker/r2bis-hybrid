@@ -3,7 +3,8 @@
  */
 'use strict';
 
-angular.module('r2bis.charts.controllers', [])
+angular.module('r2bis.charts', [])
+
 .controller('ChartsCtrl', function($scope, $state, searchParam, SessionInfo, calendarInit) {
 
 		// datepicker 초기 설정
@@ -11,13 +12,6 @@ angular.module('r2bis.charts.controllers', [])
 		$scope.fromDate = calendarInit.getPrtDate01(date);
 		$scope.toDate = calendarInit.getPrtDate(date);
 
-		//document.getElementById('test_root').addEventListener('click', function() {
-		//		console.log("test_root");
-		//		$scope.toDate.close();
-		//		$scope.fromDate.close();
-		//	}
-		//);
-		//picker__holder
 		$scope.fromOptions = {
 			format: 'yyyy-mm-dd',
 			hiddenName: true,
@@ -45,4 +39,78 @@ angular.module('r2bis.charts.controllers', [])
 			searchParam.setParam(param);
 			$state.go('tab.charts-detail');
 		};
+})
+
+.controller('ChartsDetailCtrl', function($scope, $http, $ionicLoading, searchParam) {
+
+	var param = searchParam.getParam();
+
+	$ionicLoading.show({
+		template: 'Loading...'
+	});
+
+	$http.post("http://scms.ktcs.co.kr/Mobile/Rs2_WebService.asmx/SalesTopGroup", JSON.stringify(param))
+		.success(function(data, status) {
+
+			var changeStr =	data.d.replace(/상위그룹/gi,'target');
+
+			var parseData = JSON.parse(changeStr);
+
+			if (status === 200) {
+				if (!parseData.length)  {
+					$scope.saleList = [{'target': '데이터가 없습니다.'}];
+				} else {
+					$scope.showGraph(parseData);
+					//sale json data
+					$scope.saleList = parseData;
+				}
+
+				$ionicLoading.hide();
+			} else {
+				$scope.showAlert(parseData.message);
+				$ionicLoading.hide();
+			}
+		})
+		.error(function(data, status) {
+			console.log("Error " + data + " " + status);
+			$ionicLoading.hide();
+		});
+
+	$scope.showGraph = function(parseData) {
+
+		if (!parseData.length) return false;
+
+		var names = [];
+		var values = [];
+		var maxVal = 0;
+
+		for (var i= 1, len = parseData.length; i<len; i++)
+		{
+			names.push(parseData[i].target);
+			values.push(parseData[i].KT);
+
+			if (parseData[i].KT > maxVal) maxVal = parseData[i].KT;
+		}
+
+		var options = {
+			'legend': {
+				names: names,
+				hrefs: []
+			},
+			'dataset': {
+				title: 'sell phone',
+				values: values,
+				colorset: ['#886aea']
+			},
+			'chartDiv': 'chart',
+			'chartType': 'column',
+			'chartSize': { width: 340, height: 400 },
+			'maxValue': maxVal,
+			'increment': 50
+		};
+
+		Nwagon.chart(options);
+
+	};
+
 });

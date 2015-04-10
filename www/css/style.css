@@ -99,3 +99,14 @@
     border-color: #886aea;
     border-top-width: thick;
 }
+
+.cal {
+    -webkit-transform: translate3d(0, 0, 0);
+    -moz-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    width: 100%;
+    margin: 0 auto;
+    height: 100%;
+    overflow: hidden;
+    padding: 0 0 30px 0;
+}

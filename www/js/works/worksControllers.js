@@ -3,8 +3,8 @@
  */
 'use strict';
 
-angular.module('r2bis.works.controllers', [])
-.controller('WorksCtrl', function($scope, $state, SessionInfo, searchParam, calendarInit) {
+angular.module('r2bis.works', [])
+.controller('WorksCtrl', function($scope, $state, WorksService, SessionInfo, searchParam, calendarInit) {
 
 	// datepicker 초기 설정
 	var date = new Date();
@@ -38,4 +38,28 @@ angular.module('r2bis.works.controllers', [])
 		searchParam.setParam(param);
 		$state.go('tab.works-detail');
 	}
+})
+.controller('WorksDetailCtrl', function($scope, $ionicLoading, searchParam, WorksService) {
+
+	var param = searchParam.getParam();
+
+	var load = function() {
+		$ionicLoading.show({
+				template: 'Loading...'
+		});
+		// get 방식으로 해야하지만.. 서버에서 post 방식으로 처리중
+		WorksService.save(param, function(works) {
+			// 서버에서 key값을 한글로 return.. ngRepeat에서 한글 인식이 힘듬..ㅠㅠ
+			var changeStr =	works.d.replace(/상태/gi,'status')
+						.replace(/변경일/gi,'changeDay')
+						.replace(/변경전/gi,'changeBefore')
+						.replace(/변경후/gi,'changeAfter')
+						.replace(/신청일시/gi,'requestDay');
+
+			$scope.workList = JSON.parse(changeStr);
+		});
+		$ionicLoading.hide();
+	};
+
+	load();
 });

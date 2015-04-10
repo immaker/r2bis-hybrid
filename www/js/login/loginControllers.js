@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('r2bis.login.controllers', [])
+angular.module('r2bis.login', [])
 .controller('LoginCtrl', function($scope, $ionicLoading, $http, $state, $ionicPopup, SessionInfo) {
 
 	$scope.doLogin = function() {

@@ -3,7 +3,7 @@
  */
 'use strict';
 
-angular.module('r2bis.login.services', [])
+angular.module('r2bis.login')
 .service('SessionInfo', ['$rootScope', function SessionInfo($rootScope) {
 	this.localStorageKey = "__SESSION_INFO";
 	try {

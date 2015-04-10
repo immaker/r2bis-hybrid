@@ -7,7 +7,8 @@
 // 'starter.controllers' is found in controllers.js
 'use strict';
 
-angular.module('r2bis', ['ionic', 'angular-datepicker', 'r2bis.common', 'r2bis.login', 'r2bis.calendar', 'r2bis.charts', 'r2bis.records', 'r2bis.works', 'r2bis.account'])
+angular.module('r2bis', ['ionic', 'ngResource', 'angular-datepicker',
+	'r2bis.common', 'r2bis.directive', 'r2bis.login', 'r2bis.calendar', 'r2bis.charts', 'r2bis.records', 'r2bis.works', 'r2bis.account'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -48,7 +49,7 @@ angular.module('r2bis', ['ionic', 'angular-datepicker', 'r2bis.common', 'r2bis.l
 		  views: {
 			  'tab-calendar': {
 				  templateUrl: 'templates/tab-calendar.html',
-				  controller: 'CalendarCtrl'
+				  controller: 'CalendarController'
 			  }
 		  }
 	  })

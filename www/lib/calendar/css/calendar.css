@@ -26,6 +26,7 @@ body {
     margin: 0 auto;
     height: 100%;
     overflow: hidden;
+    padding: 0 0 30px 0;
 }
 
 .header {
@@ -40,7 +41,7 @@ body {
 .header h1 {
     margin: 0;
     padding: 0;
-    font-size: 20px;
+    font-size: 25px;
     line-height: 50px;
     font-weight: 100;
     letter-spacing: 1px;
@@ -52,20 +53,20 @@ body {
     height: 0px;
     border-style: solid;
     top: 50%;
-    margin-top: -7.5px;
+    margin-top: -14.5px;
     cursor: pointer;
 }
 
 .left {
-    border-width: 7.5px 10px 7.5px 0;
+    border-width: 15.5px 25px 15.5px 0;
     border-color: transparent rgba(160, 159, 160, 1) transparent transparent;
-    left: 20px;
+    left: 40px;
 }
 
 .right {
-    border-width: 7.5px 0 7.5px 10px;
+    border-width: 15.5px 0 15.5px 25px;
     border-color: transparent transparent transparent rgba(160, 159, 160, 1);
-    right: 20px;
+    right: 40px;
 }
 
 .month {
@@ -172,7 +173,7 @@ body {
 .details {
     position: relative;
     width: 100%;
-    height: 75px;
+    height: 100%;
     background: #ef473a;
     margin-top: 5px;
     border-radius: 4px;
@@ -204,7 +205,7 @@ body {
 }
 
 .events {
-    height: 75px;
+    height: 40px;
     padding: 7px 0;
     overflow-y: auto;
     overflow-x: hidden;
@@ -240,6 +241,7 @@ body {
     letter-spacing: .5px;
     padding: 2px 16px;
     vertical-align: top;
+    color: #eee;
 }
 
 .event.empty {

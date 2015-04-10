@@ -1,6 +1,7 @@
 
 # r2bis-hybrid
 r2bis prototyping hybrid app - ionic
+개발 진행중
 
 r2bis 소개
 --

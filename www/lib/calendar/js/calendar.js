@@ -20,6 +20,7 @@
 	}
 
 	Calendar.prototype.draw = function() {
+
 		//Create Header
 		this.drawHeader();
 
@@ -59,8 +60,6 @@
 
 		this.events.forEach(function(ev) {
 			ev.date = self.current.clone().date(ev.date);
-			//console.log(ev.date);
-			//console.log(Math.random() * (29 - 1) + 1);
 		});
 
 
@@ -76,7 +75,7 @@
 				self.el.appendChild(self.month);
 				window.setTimeout(function() {
 					self.month.className = 'month in ' + (self.next ? 'next' : 'prev');
-				}, 16);
+				}, 0);
 			});
 		} else {
 			this.month = createElement('div', 'month');
@@ -91,11 +90,9 @@
 	Calendar.prototype.backFill = function() {
 		var clone = this.current.clone();
 		var dayOfWeek = clone.day();
-
 		if(!dayOfWeek) { return; }
 
 		clone.subtract('days', dayOfWeek+1);
-
 		for(var i = dayOfWeek; i > 0 ; i--) {
 			this.drawDay(clone.add('days', 1));
 		}
@@ -252,7 +249,7 @@
 
 		if(!events.length) {
 			var div = createElement('div', 'event empty');
-			var span = createElement('span', '', 'No Events');
+			var span = createElement('span', '', '일정이 없습니다.');
 
 			div.appendChild(span);
 			wrapper.appendChild(div);
@@ -282,7 +279,10 @@
 	}
 
 	Calendar.prototype.drawLegend = function() {
+
 		var legend = createElement('div', 'legend');
+		var oldLegend = document.querySelector('.legend');
+		if (oldLegend) this.el.removeChild(oldLegend);
 		var calendars = this.events.map(function(e) {
 			return e.calendar + '|' + e.color;
 		}).reduce(function(memo, e) {
