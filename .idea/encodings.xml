@@ -3,5 +3,8 @@
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$/www/js/calendar/calendarServices.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/js/works/worksServices.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/www/templates/calendar.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/www/templates/records-detail.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/www/templates/tabs.html" charset="UTF-8" />
   </component>
 </project>

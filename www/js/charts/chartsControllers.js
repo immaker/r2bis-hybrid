@@ -5,45 +5,62 @@
 
 angular.module('r2bis.charts', [])
 
-.controller('ChartsCtrl', function($scope, $state, searchParam, SessionInfo, calendarInit) {
+.controller('ChartsCtrl', function($scope, $state, $ionicPopup, SessionInfo, calendarInit) {
 
 		// datepicker 초기 설정
 		var date = new Date();
 		$scope.fromDate = calendarInit.getPrtDate01(date);
 		$scope.toDate = calendarInit.getPrtDate(date);
 
+		var from, to;
+
 		$scope.fromOptions = {
 			format: 'yyyy-mm-dd',
 			hiddenName: true,
-			onSet: function() {
+			clear: '',
+			close: 'Cancel',
+			onClose: function() {
 				$scope.fromDate = this.get('select', 'yyyy-mm-dd');
 			}
 		};
 		$scope.toOptions = {
 			format: 'yyyy-mm-dd',
 			hiddenName: true,
-			onSet: function() {
+			clear: '',
+			close: 'Cancel',
+			onClose: function() {
 				$scope.toDate = this.get('select', 'yyyy-mm-dd');
 			}
 		};
 
 		$scope.searchChart = function(){
 
-			var userInfo = SessionInfo.getCurrentUser();
-			var param = {
-				"uid": userInfo.AUTH_ID,
-				"fromYmd": $scope.fromDate,
-				"toYmd": $scope.toDate
-			};
-			// todo validate
-			searchParam.setParam(param);
-			$state.go('tab.charts-detail');
+			var flag = calendarInit.dateDiff($scope.fromDate, $scope.toDate);
+			console.log(flag);
+			if (flag < 0) {
+				console.log("다시 검색해!!");
+				calendarInit.showAlert('날짜를 확인해주십시오');
+				return false;
+			} else {
+				var userInfo = SessionInfo.getCurrentUser();
+				var param = {
+					"uid": userInfo.AUTH_ID,
+					"fromYmd": $scope.fromDate,
+					"toYmd": $scope.toDate
+				};
+
+				$state.go('tab.charts-detail', param);
+			}
 		};
 })
 
-.controller('ChartsDetailCtrl', function($scope, $http, $ionicLoading, searchParam) {
+.controller('ChartsDetailCtrl', function($scope, $http, $ionicLoading, $stateParams) {
 
-	var param = searchParam.getParam();
+	var param = {
+		"uid": $stateParams.uid,
+		"fromYmd": $stateParams.fromYmd,
+		"toYmd": $stateParams.toYmd
+	};
 
 	$ionicLoading.show({
 		template: 'Loading...'

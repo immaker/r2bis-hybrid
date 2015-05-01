@@ -23,8 +23,8 @@ angular.module('r2bis.common', [])
 	}
 ])
 	//달력 초기 설정
-.factory('calendarInit', [
-	function() {
+.factory('calendarInit', ['$ionicPopup',
+	function($ionicPopup) {
 		var self = this;
 
 		this.options = {
@@ -95,9 +95,41 @@ angular.module('r2bis.common', [])
 				return prtString;
 			},
 			dateDiff: function(d1, d2) {
+				d1 = this.str2Date(d1);
+				d2 = this.str2Date(d2);
+
 				var t2 = d2.getTime();
 				var t1 = d1.getTime();
 				return parseInt((t2-t1)/(24*3600*1000));
+			},
+			/*
+			 * 문자열을 날짜형식으로 변경
+			 */
+			str2Date: function(s) {
+				//if (!s.isDate()) {
+				//	return;
+				//}
+
+				var arrDay = s.split("-");
+				var year = parseInt(arrDay[0]);
+				var month = parseInt(arrDay[1].replace(/^0(\d)/g,"$1"));
+				var day = parseInt(arrDay[2].replace(/^0(\d)/g,"$1"));
+				var d = new Date(year, month - 1, day);
+				return d;
+			},
+			showAlert: function(message) {
+				var alertPopup = $ionicPopup.alert({
+					template: message,
+					buttons: [
+						{
+							text: '<b>확인</b>',
+							type: 'button-royal'
+						}
+					]
+				});
+				alertPopup.then(function(res) {
+					console.log('Thank you for not eating my delicious ice cream cone');
+				});
 			}
 		}
 	}

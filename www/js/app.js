@@ -53,6 +53,16 @@ angular.module('r2bis', ['ionic', 'ngResource', 'angular-datepicker',
 			  }
 		  }
 	  })
+
+	  .state('tab.calendar-detail', {
+		  url: '/calendar/calendarDetail?ev&day',
+		  views: {
+			  'tab-calendar': {
+				  templateUrl: 'templates/calendar-detail.html',
+			    controller: 'CalendarDetailController'
+			  }
+		  }
+	  })
   // Each tab has its own nav history stack:
 
   .state('tab.charts', {
@@ -66,7 +76,7 @@ angular.module('r2bis', ['ionic', 'ngResource', 'angular-datepicker',
   })
 
   .state('tab.charts-detail', {
-	  url: '/charts/chartDetail',
+	  url: '/charts/chartDetail?uid&fromYmd&toYmd',
 	  views: {
 		  'tab-charts': {
 			  templateUrl: 'templates/charts-detail.html',
@@ -84,7 +94,7 @@ angular.module('r2bis', ['ionic', 'ngResource', 'angular-datepicker',
 	  }
   })
   .state('tab.records-detail', {
-	  url: '/records/recordDetail',
+	  url: '/records/recordDetail?uid&fromYmd&toYmd',
 	  views: {
 		  'tab-records': {
 			  templateUrl: 'templates/records-detail.html',
@@ -113,7 +123,7 @@ angular.module('r2bis', ['ionic', 'ngResource', 'angular-datepicker',
 		  }
 	  })
   .state('tab.works-detail', {
-	  url: '/works/workDetail',
+	  url: '/works/workDetail?uid&fromYmd&toYmd',
 	  views: {
 		  'tab-works': {
 			  templateUrl: 'templates/works-detail.html',

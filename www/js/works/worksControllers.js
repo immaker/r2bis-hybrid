@@ -4,7 +4,7 @@
 'use strict';
 
 angular.module('r2bis.works', [])
-.controller('WorksCtrl', function($scope, $state, WorksService, SessionInfo, searchParam, calendarInit) {
+.controller('WorksCtrl', function($scope, $state, WorksService, SessionInfo, $stateParams, calendarInit) {
 
 	// datepicker 초기 설정
 	var date = new Date();
@@ -14,14 +14,18 @@ angular.module('r2bis.works', [])
 	$scope.fromOptions = {
 		format: 'yyyy-mm-dd',
 		hiddenName: true,
-		onSet: function() {
+		clear: '',
+		close: 'Cancel',
+		onClose: function() {
 			$scope.fromDate = this.get('select', 'yyyy-mm-dd');
 		}
 	};
 	$scope.toOptions = {
 		format: 'yyyy-mm-dd',
 		hiddenName: true,
-		onSet: function() {
+		clear: '',
+		close: 'Cancel',
+		onClose: function() {
 			$scope.toDate = this.get('select', 'yyyy-mm-dd');
 		}
 	};
@@ -34,14 +38,16 @@ angular.module('r2bis.works', [])
 			"fromYmd": $scope.fromDate,
 			"toYmd": $scope.toDate
 		};
-		// todo validate
-		searchParam.setParam(param);
-		$state.go('tab.works-detail');
+		$state.go('tab.works-detail',param);
 	}
 })
-.controller('WorksDetailCtrl', function($scope, $ionicLoading, searchParam, WorksService) {
+.controller('WorksDetailCtrl', function($scope, $ionicLoading, $stateParams, WorksService) {
 
-	var param = searchParam.getParam();
+	var param = {
+		"uid": $stateParams.uid,
+		"fromYmd": $stateParams.fromYmd,
+		"toYmd": $stateParams.toYmd
+	};
 
 	var load = function() {
 		$ionicLoading.show({

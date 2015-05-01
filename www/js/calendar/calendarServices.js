@@ -7,18 +7,6 @@ angular.module('r2bis.calendar')
 
 .factory('CalendarService', ['$http','$ionicLoading',
 	function($http, $ionicLoading) {
-		//var date = new Date();
-		//var calendar;
-		//
-		//// 이번 달 세팅
-		//date = calendarInit.getPrtMonth(date);
-		//this.userInfo = SessionInfo.getCurrentUser();
-		//
-		//var param_ = {
-		//	"month": date,
-		//	"uid": this.userInfo.AUTH_ID
-		//};
-
 		return {
 			getData : function(param, callback) {
 				var resultData;

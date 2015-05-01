@@ -1,0 +1,44 @@
+<!--
+  This template loads for the 'tab.friend-detail' state (app.js)
+  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
+  The FriendsCtrl pulls data from the Friends service (service.js)
+  The Friends service returns an array of friend data
+-->
+<ion-view view-title="복무변경">
+  <ion-content>
+    <div class="list">
+      <label class="item item-input">
+        <span class="input-label">사번/이름</span>
+        <input type="text" class="pull-right" ng-model="chInfo.userid" disabled>
+      </label>
+      <label class="item item-input">
+        <span class="input-label" >변경일</span>
+        <input type="text" class="pull-right" ng-model="chInfo.chday" disabled>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">변경전</span>
+        <input type="text" class="pull-right" ng-model="chInfo.evname" disabled>
+      </label>
+      <label class="item item-input item-select">
+        <span class="input-label">변경후</span>
+        <select>
+          <option>출근</option>
+          <option selected>휴무</option>
+          <option>연차</option>
+          <option>결근</option>
+          <option>병가</option>
+          <option>공가</option>
+          <option>출장</option>
+          <option>교육</option>
+        </select>
+      </label>
+      <label class="item item-input">
+        <span class="input-label">사유</span>
+        <input type="text" class="pull-right" ng-model="chInfo.reason">
+      </label>
+      <button class="button button-block button-royal">
+        저장
+      </button>
+    </div>
+  </ion-content>
+</ion-view>

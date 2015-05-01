@@ -1,0 +1,32 @@
+<ion-modal-view>
+  <ion-header-bar>
+    <div class="bar bar-header bar-assertive">
+      <h1 class="title">실적 등록</h1>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+
+    <div class="list">
+      <label class="item item-input" ng-repeat="sale in saleList">
+        <span class="input-label">{{sale.ITEM}}</span>
+        <input type="text" class="pull-right">
+      </label>
+    </div>
+
+    <div>
+      <label class="item-stacked-label">
+        <span class="date-picker-input-label">등록 날짜</span>
+        <input type="text" class="date-picker-input" pick-a-date="date" pick-a-date-options="registOptions"  ng-model="registDate"/>
+      </label>
+      <hr>
+      <button class="button button-royal search-button" ng-click="closeModal()">
+        등록하기
+      </button>
+      <hr>
+      <button class="button button-assertive search-button" ng-click="closeModal()">
+        취소
+      </button>
+      <hr>
+    </div>
+  </ion-content>
+</ion-modal-view>

@@ -5,10 +5,11 @@
 
 	var today = moment();
 
-	function Calendar(selector, events) {
+	function Calendar(selector, events, $state) {
 		this.el = document.querySelector(selector);
 		this.events = events;
 		this.current = moment().date(1);
+		this.state = $state;
 		this.draw();
 		var current = document.querySelector('.today');
 		if(current) {
@@ -39,16 +40,17 @@
 
 			this.title = createElement('h1');
 
-			var right = createElement('div', 'right');
-			right.addEventListener('click', function() { self.nextMonth(); });
-
-			var left = createElement('div', 'left');
-			left.addEventListener('click', function() { self.prevMonth(); });
+			// 현재달만 적용
+			//var right = createElement('div', 'right');
+			//right.addEventListener('click', function() { self.nextMonth(); });
+			//
+			//var left = createElement('div', 'left');
+			//left.addEventListener('click', function() { self.prevMonth(); });
 
 			//Append the Elements
 			this.header.appendChild(this.title);
-			this.header.appendChild(right);
-			this.header.appendChild(left);
+			//this.header.appendChild(right);
+			//this.header.appendChild(left);
 			this.el.appendChild(this.header);
 		}
 
@@ -111,6 +113,8 @@
 
 	Calendar.prototype.currentMonth = function() {
 		var clone = this.current.clone();
+
+		console.log(clone.month());
 
 		while(clone.month() === this.current.month()) {
 			this.drawDay(clone);
@@ -227,12 +231,13 @@
 			return memo;
 		}, []);
 
-		this.renderEvents(todaysEvents, details);
+		this.renderEvents(todaysEvents, details, day);
 
 		arrow.style.left = el.offsetLeft - el.parentNode.offsetLeft + 27 + 'px';
 	}
 
-	Calendar.prototype.renderEvents = function(events, ele) {
+	Calendar.prototype.renderEvents = function(events, ele, day) {
+		var self = this;
 		//Remove any events in the current details element
 		var currentWrapper = ele.querySelector('.events');
 		var wrapper = createElement('div', 'events in' + (currentWrapper ? ' new' : ''));
@@ -241,9 +246,17 @@
 			var div = createElement('div', 'event');
 			var square = createElement('div', 'event-category ' + ev.color);
 			var span = createElement('span', '', ev.eventName);
+			//console.log(today.isSame(day, 'day'), ev.eventName);
+			// 오늘 이후만 수정 가능
+			if (today.isBefore(day, 'day')) {
+				var button = createElement('span', 'update', '수정');
+				button.addEventListener('click', function() { self.updateEv(ev, day); });
+				div.appendChild(button);
+			}
 
 			div.appendChild(square);
 			div.appendChild(span);
+
 			wrapper.appendChild(div);
 		});
 
@@ -276,6 +289,13 @@
 		} else {
 			ele.appendChild(wrapper);
 		}
+	}
+
+	Calendar.prototype.updateEv = function(ev, day) {
+		//this.ionicLoading.show();
+		console.log(ev, day);
+
+		this.state.go('tab.calendar-detail', {ev : ev.eventName, day: day.format('YYYY-MM-DD')});
 	}
 
 	Calendar.prototype.drawLegend = function() {
