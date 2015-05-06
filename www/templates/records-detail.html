@@ -6,21 +6,13 @@
 -->
 <ion-view view-title="일일실적 상세">
   <ion-content class="padding">
-    <div class="list card" ng-repeat="record in recordList">
-      <div class="item item-divider">{{record.day}}</div>
+    <div class="list card" ng-repeat="(key, value) in recordList" >
+      <div class="item item-divider">{{value.date}}</div>
       <div class="item item-body">
         <div>
-          <a class="item" href="#">
-            KT
-            <span class="badge badge-assertive">{{record.KT}}</span>
-          </a>
-          <a class="item" href="#">
-            SKT
-            <span class="badge badge-assertive">{{record.SKT}}</span>
-          </a>
-          <a class="item" href="#">
-            LGU
-            <span class="badge badge-assertive">{{record.LGU}}</span>
+          <a class="item" ng-repeat="(key_, value_) in value" ng-if="except(key_)">
+            {{key_}}
+            <span class="badge badge-assertive">{{value_}}</span>
           </a>
         </div>
       </div>

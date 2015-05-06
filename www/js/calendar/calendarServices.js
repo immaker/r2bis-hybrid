@@ -18,7 +18,7 @@ angular.module('r2bis.calendar')
 						if (status === 200) {
 							var calData = [];
 							var parseData = JSON.parse(data.d);
-
+console.log("calendar > " + parseData.WFM_MONTH[0] + "data.d >>" + data.d);
 							angular.forEach(parseData.WFM_MONTH[0], function(value, key) {
 									if (value === "출근")
 										this.push({date : key, eventName: value, calendar: '출근', color: 'blue'});

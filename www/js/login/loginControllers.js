@@ -24,7 +24,7 @@ angular.module('r2bis.login', [])
 
 					SessionInfo.reset();
 					SessionInfo.setUserInfo(parseData);
-					//{"d":"{\"AUTH_ID\":\"40526\",\"AUTH_NAME\":\"김민준\",\"AUTH_ROLE_GRADE\":4,\"AUTH_TOPGRP_ID\":\"8\",\"AUTH_TOPGRP_NAME\":\"충남_호남\",\"AUTH_SUBGRP_ID\":\"57\",\"AUTH_SUBGRP_NAME\":\"익산\",\"AUTH_AGENT_ID\":\"1000049534\",\"AUTH_AGENT_NAME\":\"리빙프라자_수송점\",\"success\":true}"}
+					SessionInfo.setAutoLoginFlag($scope.loginChk);
 
 					$state.go('tab');
 					$ionicLoading.hide();

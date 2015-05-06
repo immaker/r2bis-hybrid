@@ -34,4 +34,16 @@ angular.module('r2bis.login')
 		localStorage.setItem(this.localStorageKey, JSON.stringify($rootScope.currentUser));
 	};
 
+	this.setAutoLoginFlag = function(flag) {
+		localStorage.setItem('loginFlag', flag);
+	};
+
+	this.getAutoLoginFlag = function() {
+		if(localStorage.getItem('loginFlag') === "false") {
+			return false;
+		}
+
+		return true;
+	};
+
 }]);

@@ -5,8 +5,8 @@
 
 angular.module('r2bis.records', [])
 
-.controller('RecordsCtrl', function($scope, $state, $ionicModal,SessionInfo, calendarInit, $q,
-                                    SalesItem1,SalesItem2,SalesItem3,SalesItem4) {
+.controller('RecordsCtrl', function($scope, $state, $ionicModal,SessionInfo, calendarInit,
+                                    $q,SalesItem1,SalesItem2,SalesItem3,SalesItem4) {
 
 	// datepicker 초기 설정
 	var date = new Date();
@@ -33,16 +33,6 @@ angular.module('r2bis.records', [])
 		}
 	};
 
-	$scope.registOptions = {
-		format: 'yyyy-mm-dd',
-		hiddenName: true,
-		clear: '',
-		close: 'Cancel',
-		onClose: function() {
-			$scope.registDate = this.get('select', 'yyyy-mm-dd');
-		}
-	};
-
 	$scope.searchRecords = function() {
 
 		var userInfo = SessionInfo.getCurrentUser();
@@ -66,6 +56,16 @@ angular.module('r2bis.records', [])
 	$scope.openModal = function() {
 		$scope.modal.show();
 		getSalesItem();
+
+		$scope.registOptions = {
+			format: 'yyyy-mm-dd',
+			hiddenName: true,
+			clear: '',
+			close: 'Cancel',
+			onClose: function() {
+				$scope.registDate = this.get('select', 'yyyy-mm-dd');
+			}
+		};
 	};
 	$scope.closeModal = function() {
 		$scope.modal.hide();
@@ -88,54 +88,29 @@ angular.module('r2bis.records', [])
 		var first  = SalesItem1.save({}).$promise,
 			second = SalesItem2.save({}).$promise,
 			third  = SalesItem3.save({}).$promise,
-			fourth = SalesItem4.save({});
+			fourth = SalesItem4.save({}).$promise;
 
-		$q.all([first, second, third]).then(function(result) {
-			var tmp = [];
+		$q.all([first, second, third, fourth]).then(function(result) {
+			var tmp;
+			var resultTmp = [];
 			angular.forEach(result, function(response) {
-				//console.log(result[0]);
-				console.log(response.d);
-				tmp = tmp.concat(response.d);
+				tmp = JSON.parse(response.d);
+
+				for (var i in tmp) {
+					resultTmp.push(tmp[i]);
+				}
 			});
-			//console.log(tmp);
-			return tmp;
+
+			return resultTmp;
 		}).then(function(tmpResult) {
-			console.log(tmpResult);
-			$scope.saleList = JSON.parse(tmpResult.d);
+			$scope.saleList = tmpResult;
 		});
 
-		//var saleArr = [];
-		//
-		//SalesItem1.save({}, function(record) {
-		//	console.log(record.d);
-		//	//$scope.saleList = JSON.parse(record.d);
-		//	saleArr = saleArr.concat(record.d);
-		//});
-		//
-		//SalesItem2.save({}, function(record) {
-		//	console.log(record.d);
-		//	//$scope.saleList = JSON.parse(record.d);
-		//	saleArr += JSON.parse(record.d);
-		//});
-		//
-		//SalesItem3.save({}, function(record) {
-		//	console.log(record.d);
-		//	//$scope.saleList = JSON.parse(record.d);
-		//	saleArr += JSON.parse(record.d);
-		//});
-		//
-		//SalesItem4.save({}, function(record) {
-		//	console.log(record.d);
-		//	//$scope.saleList = JSON.parse(record.d);
-		//	saleArr += JSON.parse(record.d);
-		//});
-		//console.log(sales);
-		//$scope.salsList = sales;
 	}
 
 })
 .controller('RecordsDetailCtrl', function($scope, $ionicLoading, RecordService, $stateParams) {
-	// 검색 조건 // chartsService 통해서 컨트롤러 사이 통신
+	// 검색 조건
 	var param = {
 		"uid": $stateParams.uid,
 		"fromYmd": $stateParams.fromYmd,
@@ -147,22 +122,27 @@ angular.module('r2bis.records', [])
 	$ionicLoading.show({
 		template: 'Loading...'
 	});
+var tempInt = 0;
+	$scope.except = function(key) {
+		if (key !== 'PID' && key !== 'date' && key !== '상위그룹' && key !== '하위그룹' && key !== '접점코드'
+			&& key !== '매장명' && key !== '사번' && key !== '사원명') {
+			return true;
+		}
+	};
 
 	var load = function() {
+
 		// get 방식으로 해야하지만.. 서버에서 post 방식으로 처리중..
 		// restful 하지 못함.. 안타깝다~~ 서버 개발도 내가 하고 싶다~~
 		RecordService.save(param, function(record) {
 			// 서버에서 key값을 한글로 return.. ngRepeat에서 한글 인식이 힘듦..ㅠㅠ
-			var changeStr =	record.d.replace(/일자/gi,'day');
-			//changeStr = JSON.parse(changeStr);
-			//var recordData = [];
-			//angular.forEach(changeStr, function(value, key) {
-			//	this.push({key: key, value: value});
-			//}, recordData);
-			//console.log(recordData);
-			//console.log(JSON.parse(recordData));
-			//var change = recordData.replace(/일자/gi, 'day');
-			$scope.recordList = JSON.parse(changeStr);
+			var changeStr =	record.d.replace(/일자/gi,'date');
+
+			var parseData = JSON.parse(changeStr);
+			console.log(changeStr);
+			console.log("1>>" + parseData);
+
+			$scope.recordList = parseData;
 			$ionicLoading.hide();
 		});
 	};

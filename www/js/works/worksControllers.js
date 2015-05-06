@@ -61,8 +61,13 @@ angular.module('r2bis.works', [])
 						.replace(/변경전/gi,'changeBefore')
 						.replace(/변경후/gi,'changeAfter')
 						.replace(/신청일시/gi,'requestDay');
-
+console.log(changeStr);
+			if(changeStr.length < 3) changeStr = '[{"status":4}]';
+console.log(changeStr);
 			$scope.workList = JSON.parse(changeStr);
+
+			//{"상태":1,"변경일":"2015-04-29","상위그룹":"충남_호남","하위그룹":"익산","매장명":"리빙프라자(주)",
+			// "사번":"40526","사원명":"김민준","변경전":"출근","변경후":"출근","신청일시":"2015-04-28 19:21:43","비고":""}
 		});
 		$ionicLoading.hide();
 	};

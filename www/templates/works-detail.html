@@ -1,27 +1,44 @@
 <ion-view view-title="근태관리 상세">
   <ion-content class="padding">
-    <div class="card card-work-approval" ng-repeat="work in workList">
-      <div class="item item-text-wrap">
-        <span>{{work.status}}</span>
-        <span>{{work.requestDay}}</span>
-        <span>기존: {{work.changeBefore}} / 변경: {{work.changeAfter}}</span>
-        <span>{{work.changeDay}}</span>
+    <div class="card" ng-repeat="work in workList">
+      <div class="item item-text-wrap" ng-if="work.status == 1">
+        <p class="status-approval">기존: {{work.changeBefore}} / 변경: {{work.changeAfter}}
+          <span>
+            <button class="button button-small button-royal">
+              승인
+            </button>
+          </span>
+        </p>
+        <p>신청일 : {{work.requestDay}}</p>
+        <p>변경일 : {{work.changeDay}}</p>
       </div>
-    </div>
-    <div class="card card-work-wait" ng-repeat="work in workList">
-      <div class="item item-text-wrap">
-        <span>{{work.status}}</span>
-        <span style="display: block; font-size: 0.9em; padding: 5px 0;">{{work.changeDay}}</span>
-        <span style="display: block; font-size: 1.3em; font-weight: bold; color: #ffc900;">기존: {{work.changeBefore}} / 변경: {{work.changeAfter}}</span>
-        <span style="display: block; font-size: 0.8em; color: RGBA(0,0,0,0.5)">{{work.requestDay}}</span>
+      <div class="item item-text-wrap" ng-if="work.status == 0">
+        <p class="status-wait">기존: {{work.changeBefore}} / 변경: {{work.changeAfter}}
+          <span>
+            <button class="button button-small button-energized">
+              대기
+            </button>
+          </span>
+        </p>
+        <p>신청일 : {{work.requestDay}}</p>
+        <p>변경일 : {{work.changeDay}}</p>
       </div>
-    </div>
-    <div class="card card-work-reject" ng-repeat="work in workList">
-      <div class="item item-text-wrap">
-        <span>{{work.status}}</span>
-        <span>{{work.requestDay}}</span>
-        <span>기존: {{work.changeBefore}} / 변경: {{work.changeAfter}}</span>
-        <span>{{work.changeDay}}</span>
+      <div class="item item-text-wrap" ng-if="work.status == 2">
+        <p class="status-reject">기존: {{work.changeBefore}} / 변경: {{work.changeAfter}}
+          <span>
+            <button class="button button-small button-assertive">
+              반려
+            </button>
+          </span>
+        </p>
+        <p>신청일 : {{work.requestDay}}</p>
+        <p>변경일 : {{work.changeDay}}</p>
+      </div>
+      <!--데이터가 없을때-->
+      <div class="item item-text-wrap" ng-if="work.status == 4">
+        <p class="status-approval">
+          근태관리 내역이 없습니다.
+        </p>
       </div>
     </div>
   </ion-content>

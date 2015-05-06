@@ -1,9 +1,16 @@
 <ion-view view-title="설정">
   <ion-content>
-    <ion-list>
-    <ion-toggle  ng-model="settings.enableFriends">
-        자동로그인
-    </ion-toggle>
-    </ion-list>
+    <div class="list">
+
+      <ion-toggle ng-repeat="item in settingsList"
+                  ng-model="item.checked"
+                  ng-checked="item.checked"
+                  ng-change="localStorageUpdate(item.checked)">
+        {{ item.text }}
+      </ion-toggle>
+      <!--<div class="item">-->
+        <!--<pre ng-bind="settingsList | json"></pre>-->
+      <!--</div>-->
+    </div>
   </ion-content>
 </ion-view>

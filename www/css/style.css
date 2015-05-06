@@ -83,10 +83,9 @@
     font-size: 18px;
     font-weight: bold;
 }
-
-.card-work-reject {
+.card-work-approval {
     border-top: solid;
-    border-color: #ef473a;
+    border-color: #886aea;
     border-top-width: thick;
 }
 .card-work-wait {
@@ -94,10 +93,40 @@
     border-color:  #ffc900;
     border-top-width: thick;
 }
-.card-work-approval {
+.card-work-reject {
     border-top: solid;
-    border-color: #886aea;
+    border-color: #ef473a;
     border-top-width: thick;
+}
+
+.card-work {
+    border-top: solid;
+    border-color: #f8f8f8;
+    border-top-width: thick;
+}
+
+.card .status-approval {
+    display: block;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #886aea;
+}
+.card .status-wait {
+    display: block;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ffc900;
+}
+.card .status-reject {
+    display: block;
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #ef473a;
+}
+
+.card p span {
+    display:inline-block;
+    float: right;
 }
 
 .cal {
